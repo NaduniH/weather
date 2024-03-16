@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="with=device-width, intial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+
+
+      <!-- MAP -->
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+      
+    
+  <body>
+     
+    <header>
+      
+
+      <div class="container con-class">
+       
+        <div class="row">
+          <div class="col-md-12 p-3" >
+          <div class="card text-center">
+            <div class="card-body ">
+              <h1 class="title"><b>🌍WELCOME TO WEATHER FORECAST </b></h1>
+               <div class="timeLbl" id="local-time"></div><br>
+              <div class="user-interface">
+                <input type="text" id="location-input" placeholder="Enter location "/>
+                <button id="search-button">Search</button>
+              </div>
+            </div>
+          </div>
+       </div>
+        </div>
+      </div>
+    </header>
+    <div class="row ">
+      <div class="col-md-11 p-3" >
+      </div>
+      <div class="col-md-1 p-3" >
+      <button class="btn  btn-primary btn-sm" onclick="toggleDarkMode();">DackMode</button>
+    </div>
+</div>
+
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-md-12 p-3" >
+          <div class="card text-center">
+            <div class="card-body ">
+              <h1 class="title"><b>🌍Welcome to Weather Forecast </b></h1>
+               <div class="timeLbl" id="local-time"></div>
+              <div class="user-interface">
+                <input type="text" id="location-input" placeholder="Enter location "/>
+                <button id="search-button">Search</button>
+              </div>
+            </div>
+          </div>
+       </div> -->
+        <div class="col-md-4">
+          <div class="row p-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="weather-icon">
+                  <img
+                    class="weatherIcon1"
+                    id="weatherIcon"
+                    alt="Weather Icon"
+                    src="images/img1-cloud.png"
+                  />
+                </div>
+                <div class="weather-info">
+                  <h3 class="location name fw-bold" id="location">Galle</h3>
+                  <p class="temperature temp_c">35°C</p>
+                  <p class="description url">Cloudy</p>
+                  <!-- <p class="description location-time"></p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 p-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">HUMIDITY</h5>
+                  <div class="weather-info">
+                    <h3 class="location img" id="location-img">❄</h3>
+                    <p class="humidity">30</p>
+                    <!-- <p class="description url">Cloudy</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 p-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">FEELS LIKE</h5>
+                  <div class="weather-info">
+                    <h3 class="location img" id="location-img">☃</h3>
+                    <p class="feelslike_c">30°C</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 p-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">WIND</h5>
+                  <div class="weather-info ">
+                    <h3 class="location img " id="location-img">🍃</h3>
+                    <p class="wind_kph">70.22</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 p-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">VISIBILITY</h5>
+                  <div class="weather-info">
+                    <h3 class="location img" id="location-img">👁️</h3>
+                   <p class="vis_km">6 km</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- <div class="row p-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">WIND DIRECTION</h5>
+                <p class="card-text">
+                 
+                </p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="col-md-8">
+          
+          <div class="row p-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title text-center fw-bold" >📍LOCATION INFORMATION</h5>
+                <div style="overflow-x: auto">
+                  <table
+                    class="table table-secondary table-striped-columns table-bordered border-dark border-3"
+                  >
+                    <!-- <table class="tblW" > -->
+
+                    <tr>
+                      <td><strong class="locationPara">⏲Time Zone</strong></td>
+
+                      <td><strong class="regionPara">🎗Region</strong></td>
+
+                      <td><strong class="countryPara">🗺Country</strong></td>
+
+                      <td><strong>🌐longitude</strong></td>
+
+                      <td><strong>🌐latitude</strong></td>
+                    </tr>
+
+                    <tr>
+                      <td><span class="tz_id">Asia/Galle</span></td>
+                      <td><span class="region">southern</span></td>
+                      <td><span class="country">Sri-Lanka</span></td>
+                      <td><span id="lon">10.33</span></td>
+                      <td><span id="lat">18.55</span></td>
+                    </tr>
+                  <p class="description location-time"></p>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row p-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment 8</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+              </div>
+            </div>
+          </div> -->
+          <div class="row p-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title text-center fw-bold">🗺7 DAYS WEATHER FORECAST</h5>
+                <div style="overflow-x: auto">
+                  <table
+                  >
+                      <!-- <div class="date-serch text-center">
+                        To : <input id="startDate" type="date">&nbsp;&nbsp;&nbsp;
+                        End : <input id="endDate" type="date">
+                        <button id="searchForecast" onclick="searchForecast();">Search Date</button>
+                      </div> -->
+                      <hr>
+                      <div style="overflow-x:auto text-center">
+                        <table class="table table-light table-striped-columns table-bordered  border-dark" >
+                          <tr>
+                            <td>
+                              <strong id="date8">Monday 2024-03-13</strong>
+                            </td>
+                            <td>
+                              <strong id="date9">Thursday 2024-03-14</strong>
+                            </td>
+                            <td>
+                              <strong id="date10">Friday 2024-03-15</strong>
+                            </td>
+                            <td>
+                              <strong id="date11">Saturday 2024-03-16</strong>
+                            </td>
+                            <td>
+                              <strong id="date12">Sunday 2024-03-17</strong>
+                            </td>
+                            <td>
+                              <strong id="date13">Monday 2024-03-18</strong>
+                            </td>
+                            <td>
+                              <strong id="date14">Tuesday 2024-03-19</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img id="img8" class="img" src="images/img1-cloud.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img9" class="img" src="images/img2-cloud-light.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img10" class="img" src="images/img3-partly-cloudy.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img11" class="img" src="images/img4-night-wind.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img12" class="img" src="images/img5-storm.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img13" class="img" src="images/img6-doud-light.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img14" class="img" src="images/img7-night-wind .png" alt="">
+                            </td>
+                            
+                              
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong class="title8">cloud</strong>
+                            </td>
+                            <td>
+                              <strong class="title9">cloud-lightning</strong>
+                            </td>
+                            <td>
+                              <strong class="title10">partly-cloudy</strong>
+                            </td>
+                            <td>
+                              <strong class="title11">night-wind</strong>
+                            </td>
+                            <td>
+                              <strong class="title12">storm</strong>
+                            </td>
+                            <td>
+                              <strong class="title13">cloud-lightning</strong>
+                            </td>
+                            <td>
+                              <strong class="title14">night-wind</strong>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div class="row p-3">
+            <div class="card  text-center">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">🗺7 DAYS WEATHER FORECAST HISTORY</h5>
+                <div style="overflow-x: auto">
+                  <table
+                  >
+                      <!-- <div class="date-serch text-center">
+                        To : <input id="startDate" type="date">&nbsp;&nbsp;&nbsp;
+                        End : <input id="endDate" type="date">
+                        <button id="searchForecast" onclick="searchForecast();">Search Date</button>
+                      </div> -->
+                      <hr>
+                      <div style="overflow-x:auto text-center">
+                        <table class="table table-light table-striped-columns table-bordered  border-dark" >
+                          <tr>
+                            <td>
+                              <strong id="date1">Monday 2024-03-13</strong>
+                            </td>
+                            <td>
+                              <strong id="date2">Thursday 2024-03-14</strong>
+                            </td>
+                            <td>
+                              <strong id="date3">Friday 2024-03-15</strong>
+                            </td>
+                            <td>
+                              <strong id="date4">Saturday 2024-03-16</strong>
+                            </td>
+                            <td>
+                              <strong id="date5">Sunday 2024-03-17</strong>
+                            </td>
+                            <td>
+                              <strong id="date6">Monday 2024-03-18</strong>
+                            </td>
+                            <td>
+                              <strong id="date7">Tuesday 2024-03-19</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img id="img1" class="img" src="images/img1-cloud.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img2" class="img" src="images/img2-cloud-light.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img3" class="img" src="images/img3-partly-cloudy.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img4" class="img" src="images/img4-night-wind.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img5" class="img" src="images/img5-storm.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img6" class="img" src="images/img6-doud-light.png" alt="">
+                            </td>
+                            <td>
+                              <img id="img7" class="img" src="images/img7-night-wind .png" alt="">
+                            </td>
+                            
+                              
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong class="title1">cloud</strong>
+                            </td>
+                            <td>
+                              <strong class="title2">cloud-lightning</strong>
+                            </td>
+                            <td>
+                              <strong class="title3">partly-cloudy</strong>
+                            </td>
+                            <td>
+                              <strong class="title4">night-wind</strong>
+                            </td>
+                            <td>
+                              <strong class="title5">storm</strong>
+                            </td>
+                            <td>
+                              <strong class="title6">cloud-lightning</strong>
+                            </td>
+                            <td>
+                              <strong class="title7">night-wind</strong>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="row p-3">
+          <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title">Location Map</h5>
+                <p class="card-text">
+                  <div id="map" style="height: 400px;"></div>
+                </p>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  
+    
+
+    <!-- <div id="map" style="height: 400px;"></div> -->
+
+    <!-- <div class="cwDiv m-3">
+      <div class="cwDivTitle">
+          <nav class="navbar navbar-expand-lg  ">
+              <div class="container-fluid">
+                  <h1 class="navbar-brand" style="color: white; font-weight: 600;">Location : </h1>
+              </div>
+          </nav>
+      </div>
+      <div id="map" style="height: 400px;"></div>
+  </div> -->
+
+
+    <footer id="footer"></footer>
+  </div>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+  </body>
+</html>
