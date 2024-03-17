@@ -1,4 +1,3 @@
-// const mapContainer = $("#map-container");
 let idP = $('.temp_c');
 let feelslike_c = $('.feelslike_c');
 let wind_kph = $('.wind_kph');
@@ -15,8 +14,8 @@ let latP = $('#lat');
 let lonP = $('#lon');
 
 let loc_t = $('.location-time');
-//let input_location = $("#location-input");
 let img = document.getElementById('weatherIcon');
+
 const apiKey = '2fe6a899aa2a46588a8153528240703';
 
 let today;
@@ -85,9 +84,7 @@ function updateMap(newLatitude, newLongitude) {
     .catch((error) => console.error('Error fetching location name:', error));
 }
 
-// if (document.getElementById('location-input').value != null) {
-//   const location_input = document.getElementById('location-input').value;
-// }
+
 
 var map = L.map('map').setView([0, 0], 13);
 
@@ -95,11 +92,9 @@ var marker;
 
 getLocation();
 
-// function darkMode() {
-//   var element = document.body;
-//   element.classList.toggle('dark-mode');
-// }
+
 //--------------------------------------getCurrentPosition-----------------------------------
+
 let latitude;
 let longitude;
 function getLocation() {
@@ -218,9 +213,10 @@ function updateLocalTime() {
       yesterday +
       ' dayBeforeAweek ' +
       dayBeforeAweek + 
-      ' today ' +
+    ' today ' +
       today
   );
+  
 }
 
 updateLocalTime();
@@ -229,23 +225,6 @@ setInterval(updateLocalTime, 1000);
 
 //---------------------------------------------------searchForecast-------------------------------------
 
-//searchForecast();
-
-// function searchForecast() {
-//   const startDate = new Date(document.getElementById('startDate').value);
-//   const endDate = new Date(document.getElementById('endDate').value);
-//   const timeDiff = endDate - startDate;
-
-//   const daysDiff = timeDiff / (1000 * 3600 * 24);
-
-//   getWeatherTimeLine(
-//     document.getElementById('startDate').value,
-//     document.getElementById('endDate').value
-//   );
-// }
-// getWeatherTimeLine("2023-10-01", "2023-09-25");
-// ------------------------------------getWeatherTimeLine---------------------------------
-//getWeatherTimeLine();
 
 function getWeatherTimeLine() {
   console.log('timeline location : ' + timeLineLocation);

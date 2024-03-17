@@ -102,12 +102,10 @@ body {
   margin-right: 20px;
 }
 
-
-/* .con-class {
-  background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('images/globe.png');
-  background-position: center;
-  width: 100%;
-} */
+.con-class {
+ 
+  padding-top: 40px;
+} 
 
 header {
   width: 100%;
